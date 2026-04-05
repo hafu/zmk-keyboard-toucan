@@ -2,18 +2,145 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
+
+// keys
+#define LT0 0
+#define LT1 1
+#define LT2 2
+#define LT3 3
+#define LT4 4
+#define LT5 5
+#define LM0 12
+#define LM1 13
+#define LM2 14
+#define LM3 15
+#define LM4 16
+#define LM5 17
+#define LB0 24
+#define LB1 25
+#define LB2 26
+#define LB3 27
+#define LB4 28
+#define LB5 29
+#define LH0 36
+#define LH1 37
+#define LH2 38
+
+#define RT0 6
+#define RT1 7
+#define RT2 8
+#define RT3 9
+#define RT4 10
+#define RT5 11
+#define RM0 18
+#define RM1 19
+#define RM2 20
+#define RM3 21
+#define RM4 22
+#define RM5 23
+#define RB0 30
+#define RB1 31
+#define RB2 32
+#define RB3 33
+#define RB4 34
+#define RB5 35
+#define RH0 39
+#define RH1 40
+#define RH2 41
+
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5 
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5 
+#define THUMBS LH0 LH1 LH2 RH0 RH1 RH2
+// END: keys
+
+// Homerow Mods vars
+#define HM_TAPPING_TERM 250
+#define HM_TAPPING_TERM_FAST 200
+#define HM_QUICK_TAP 200
+#define HM_PRIOR_IDLE 70
+// END: Homerow Mods vars
+
+// Layer Tap var
+#define LT_TAPPING_TERM 250
+#define LT_QUICK_TAP 200
+// END: Layer Tap var
 
 #define BASE 0
 #define NAV  1
-#define SYM  2
-#define ADJ  3
+#define MOUSE 2
+#define MEDIA 3
+#define NUM 4
+#define SYM 5
+#define FUN 6
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+    behaviors {
+        hm_l: homerow_mods_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <HM_PRIOR_IDLE >;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hm_r: homerow_mods_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <HM_PRIOR_IDLE >;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+        
+        hm_shift_l: homerow_mods_shift_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            quick-tap-ms = <HM_QUICK_TAP>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <HM_PRIOR_IDLE >;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+        
+        hm_shift_r: homerow_mods_shift_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            quick-tap-ms = <HM_QUICK_TAP>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <HM_PRIOR_IDLE >;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        lt: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+
+            flavor = "hold-preferred";
+            tapping-term-ms = <LT_TAPPING_TERM>;
+            quick-tap-ms = <LT_QUICK_TAP>;
+        };
+    };
+    
+    combos {
+        compatible = "zmk,combos";
+
+        cb_capsword {
+            bindings = <&caps_word>;
+            key-positions = <LM4 RM2>;
         };
     };
 
@@ -23,42 +150,73 @@
         base {
             display-name = "BASE";
             bindings = <
-                &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-                &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-                &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                                &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
+                &none  &kp Q              &kp W             &kp F                  &kp P                &kp B                                          &kp J              &kp L                      &kp U                  &kp Y              &kp SINGLE_QUOTE      &none
+                &none  &hm_l RIGHT_ALT A  &hm_l LEFT_GUI R  &hm_l RIGHT_CONTROL S  &hm_shift_l LSHFT T  &kp G                                          &kp M              &hm_shift_r RIGHT_SHIFT N  &hm_r RIGHT_CONTROL E  &hm_r RIGHT_WIN I  &hm_r RIGHT_ALT O     &none
+                &none  &hm_l LEFT_ALT Z   &kp X             &kp C                  &kp D                &kp V                                          &kp K              &kp H                      &kp COMMA              &kp DOT            &hm_r LEFT_ALT SLASH  &none
+                                                                                   &lt MEDIA ESCAPE     &lt NAV SPACE  &lt MOUSE TAB    &lt SYM ENTER  &lt NUM BACKSPACE  &lt FUN DELETE 
             >;
         };
 
         nav {
             display-name = "NAV";
             bindings = <
-                &kp TAB     &kp N1          &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-                &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-                &kp LSHFT   &studio_unlock  &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                                &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+                &none  &trans  &trans  &trans  &to BASE       &trans                                     &kp K_AGAIN    &kp K_PASTE     &kp K_COPY  &kp K_CUT     &kp K_UNDO       &none
+                &none  &trans  &trans  &trans  &trans         &trans                                     &caps_word     &kp LEFT_ARROW  &kp DOWN    &kp UP_ARROW  &kp RIGHT_ARROW  &none
+                &none  &trans  &trans  &trans  &to NAV        &trans                                     &kp INSERT     &kp HOME        &kp PG_DN   &kp PG_UP     &kp END          &none
+                                               &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &kp ENTER  &kp BACKSPACE  &kp DELETE
+            >;
+        };
+
+        mouse {
+            display-name = "MOUS";
+            bindings = <
+                &none  &trans  &trans  &trans  &to BASE       &trans                                     &kp K_AGAIN  &kp K_PASTE     &kp K_COPY      &kp K_CUT     &kp K_UNDO       &none
+                &none  &trans  &trans  &trans  &trans         &trans                                     &none        &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none
+                &none  &trans  &trans  &trans  &to MOUSE      &trans                                     &none        &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
+                                               &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &mkp MCLK  &mkp LCLK    &mkp RCLK
+            >;
+        };
+
+        media {
+            display-name = "MEDI";
+            bindings = <
+                &none  &trans  &trans  &trans  &to BASE       &trans                                      &none       &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &none        &none
+                &none  &trans  &trans  &trans  &trans         &trans                                      &none       &kp C_PREV  &kp C_VOL_DN          &kp C_VOL_UP          &kp C_NEXT   &none
+                &none  &trans  &trans  &trans  &to MEDIA      &trans                                      &none       &kp F13     &kp F14               &kp C_SLEEP           &kp C_POWER  &none
+                                               &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &kp C_STOP  &kp C_PLAY  &kp K_MUTE
+            >;
+        };
+
+        num {
+            display-name = "NUM";
+            bindings = <
+                &none  &kp LEFT_BRACKET  &kp N7  &kp N8  &kp N9     &kp RIGHT_BRACKET                              &trans             &to BASE        &trans  &trans  &trans  &none
+                &none  &kp SEMICOLON     &kp N4  &kp N5  &kp N6     &kp EQUAL                                      &trans             &trans          &trans  &trans  &trans  &none
+                &none  &kp GRAVE         &kp N1  &kp N2  &kp N3     &kp BACKSLASH                                  &trans             &to NUM         &trans  &trans  &trans  &none
+                                                         &kp COMMA  &kp N0             &kp MINUS    &lt SYM ENTER  &lt NUM BACKSPACE  &lt FUN DELETE 
             >;
         };
 
         sym {
             display-name = "SYM";
             bindings = <
-                &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-                &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-                &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
-                                          &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+                &none  &kp LEFT_BRACE  &kp AMPERSAND    &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_BRACE                                         &trans       &to BASE  &trans          &trans  &trans  &none
+                &none  &kp COLON       &kp DOLLAR       &kp PERCENT   &kp CARET             &kp PLUS                                                &trans       &trans    &trans          &trans  &trans  &none
+                &none  &kp TILDE       &kp EXCLAMATION  &kp AT_SIGN   &kp HASH              &kp PIPE                                                &trans       &to SYM   &trans          &trans  &trans  &none
+                                                                      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDERSCORE    &lt SYM ENTER  &lt NUM BACKSPACE      &lt FUN DELETE 
             >;
         };
 
-        adj {
-            display-name = "ADJ";
+        fun {
+            display-name = "fun";
             bindings = <
-                &mo TAB   &trans &kp F7 &kp F8 &kp F9 &kp F12   &kp C_VOL_DN &kp C_MUTE  &kp C_VOL_UP &trans &trans &kp BSPC
-                &kp LCTRL &trans &kp F4 &kp F5 &kp F6 &kp F11   &trans       &trans      &trans       &trans &trans &trans
-                &bt LSHFT &trans &kp F1 &kp F2 &kp F3 &kp F10   &trans       &trans      &trans       &trans &trans &trans
-                                   &kp LGUI &mo NAV &kp SPACE   &kp RET &mo 2 &kp RALT
+                &none  &kp F12  &kp F7  &kp F8  &kp F9      &kp PRINTSCREEN                            &trans       &to BASE   &trans          &bt BT_SEL 3  &bt BT_SEL 0  &none
+                &none  &kp F11  &kp F4  &kp F5  &kp F6      &kp SCROLLLOCK                             &trans       &trans     &trans          &bt BT_SEL 4  &bt BT_SEL 1  &none
+                &none  &kp F10  &kp F1  &kp F2  &kp F3      &kp PAUSE_BREAK                            &bt BT_CLR   &to FUN    &trans          &trans        &bt BT_SEL 2  &none
+                                                &kp K_MENU  &kp SPACE        &kp TAB    &lt SYM ENTER  &lt NUM BACKSPACE       &lt FUN DELETE 
             >;
         };
+
         extra_1 {
                 status = "reserved";
         };
