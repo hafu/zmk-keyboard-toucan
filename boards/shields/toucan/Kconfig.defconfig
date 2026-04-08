@@ -4,12 +4,21 @@ config ZMK_KEYBOARD_NAME
     default "Toucan"
 
 config ZMK_SPLIT_ROLE_CENTRAL
+    bool
     default y
 
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
     default y
 
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY
+    default y
+
+endif
+
+if SHIELD_TOUCAN_RIGHT
+
+config ZMK_SPLIT_ROLE_PERIPHERAL
+    bool
     default y
 
 endif
