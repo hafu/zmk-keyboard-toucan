@@ -170,10 +170,10 @@
         mouse {
             display-name = "MOUS";
             bindings = <
-                &none  &trans  &trans  &trans  &to BASE       &trans                                     &kp K_AGAIN  &kp K_PASTE     &kp K_COPY      &kp K_CUT     &kp K_UNDO       &none
-                &none  &trans  &trans  &trans  &trans         &trans                                     &none        &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none
-                &none  &trans  &trans  &trans  &tog MOUSE     &trans                                     &none        &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
-                                               &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &mkp MCLK  &mkp LCLK    &mkp RCLK
+                &none  &trans  &trans     &trans     &to BASE       &trans                                     &kp K_AGAIN  &kp K_PASTE     &kp K_COPY      &kp K_CUT     &kp K_UNDO       &none
+                &none  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK      &trans                                     &none        &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none
+                &none  &trans  &trans     &trans     &tog MOUSE     &trans                                     &none        &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
+                                                     &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &mkp MCLK  &mkp LCLK    &mkp RCLK
             >;
         };
 
