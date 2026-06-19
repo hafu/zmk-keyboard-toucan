@@ -162,7 +162,7 @@
             bindings = <
                 &none  &trans  &trans  &trans  &to BASE       &trans                                     &kp K_AGAIN    &kp K_PASTE     &kp K_COPY  &kp K_CUT     &kp K_UNDO       &none
                 &none  &trans  &trans  &trans  &trans         &trans                                     &caps_word     &kp LEFT_ARROW  &kp DOWN    &kp UP_ARROW  &kp RIGHT_ARROW  &none
-                &none  &trans  &trans  &trans  &to NAV        &trans                                     &kp INSERT     &kp HOME        &kp PG_DN   &kp PG_UP     &kp END          &none
+                &none  &trans  &trans  &trans  &tog NAV       &trans                                     &kp INSERT     &kp HOME        &kp PG_DN   &kp PG_UP     &kp END          &none
                                                &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &kp ENTER  &kp BACKSPACE  &kp DELETE
             >;
         };
@@ -172,7 +172,7 @@
             bindings = <
                 &none  &trans  &trans  &trans  &to BASE       &trans                                     &kp K_AGAIN  &kp K_PASTE     &kp K_COPY      &kp K_CUT     &kp K_UNDO       &none
                 &none  &trans  &trans  &trans  &trans         &trans                                     &none        &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none
-                &none  &trans  &trans  &trans  &to MOUSE      &trans                                     &none        &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
+                &none  &trans  &trans  &trans  &tog MOUSE     &trans                                     &none        &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
                                                &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &mkp MCLK  &mkp LCLK    &mkp RCLK
             >;
         };
@@ -182,7 +182,7 @@
             bindings = <
                 &none  &trans  &trans  &trans  &to BASE       &trans                                      &none       &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &none        &none
                 &none  &trans  &trans  &trans  &trans         &trans                                      &none       &kp C_PREV  &kp C_VOL_DN          &kp C_VOL_UP          &kp C_NEXT   &none
-                &none  &trans  &trans  &trans  &to MEDIA      &trans                                      &none       &kp F13     &kp F14               &kp C_SLEEP           &kp C_POWER  &none
+                &none  &trans  &trans  &trans  &tog MEDIA     &trans                                      &none       &kp F13     &kp F14               &kp C_SLEEP           &kp C_POWER  &none
                                                &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &kp C_STOP  &kp C_PLAY  &kp K_MUTE
             >;
         };
@@ -192,7 +192,7 @@
             bindings = <
                 &none  &kp LEFT_BRACKET  &kp N7  &kp N8  &kp N9     &kp RIGHT_BRACKET                              &trans             &to BASE        &trans  &trans  &trans  &none
                 &none  &kp SEMICOLON     &kp N4  &kp N5  &kp N6     &kp EQUAL                                      &trans             &trans          &trans  &trans  &trans  &none
-                &none  &kp GRAVE         &kp N1  &kp N2  &kp N3     &kp BACKSLASH                                  &trans             &to NUM         &trans  &trans  &trans  &none
+                &none  &kp GRAVE         &kp N1  &kp N2  &kp N3     &kp BACKSLASH                                  &trans             &tog NUM        &trans  &trans  &trans  &none
                                                          &kp COMMA  &kp N0             &kp MINUS    &lt SYM ENTER  &lt NUM BACKSPACE  &lt FUN DELETE 
             >;
         };
@@ -202,7 +202,7 @@
             bindings = <
                 &none  &kp LEFT_BRACE  &kp AMPERSAND    &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_BRACE                                         &trans       &to BASE  &trans          &trans  &trans  &none
                 &none  &kp COLON       &kp DOLLAR       &kp PERCENT   &kp CARET             &kp PLUS                                                &trans       &trans    &trans          &trans  &trans  &none
-                &none  &kp TILDE       &kp EXCLAMATION  &kp AT_SIGN   &kp HASH              &kp PIPE                                                &trans       &to SYM   &trans          &trans  &trans  &none
+                &none  &kp TILDE       &kp EXCLAMATION  &kp AT_SIGN   &kp HASH              &kp PIPE                                                &trans       &tog SYM  &trans          &trans  &trans  &none
                                                                       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDERSCORE    &lt SYM ENTER  &lt NUM BACKSPACE      &lt FUN DELETE 
             >;
         };
@@ -212,7 +212,7 @@
             bindings = <
                 &none  &kp F12  &kp F7  &kp F8  &kp F9      &kp PRINTSCREEN                            &trans       &to BASE   &trans          &bt BT_SEL 3  &bt BT_SEL 0  &none
                 &none  &kp F11  &kp F4  &kp F5  &kp F6      &kp SCROLLLOCK                             &trans       &trans     &trans          &bt BT_SEL 4  &bt BT_SEL 1  &none
-                &none  &kp F10  &kp F1  &kp F2  &kp F3      &kp PAUSE_BREAK                            &bt BT_CLR   &to FUN    &trans          &trans        &bt BT_SEL 2  &none
+                &none  &kp F10  &kp F1  &kp F2  &kp F3      &kp PAUSE_BREAK                            &bt BT_CLR   &tog FUN   &trans          &trans        &bt BT_SEL 2  &none
                                                 &kp K_MENU  &kp SPACE        &kp TAB    &lt SYM ENTER  &lt NUM BACKSPACE       &lt FUN DELETE 
             >;
         };
