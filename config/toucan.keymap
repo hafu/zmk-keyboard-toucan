@@ -180,10 +180,10 @@
         media {
             display-name = "MEDI";
             bindings = <
-                &none  &trans  &trans  &trans  &to BASE       &trans                                      &none       &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &none        &none
-                &none  &trans  &trans  &trans  &trans         &trans                                      &none       &kp C_PREV  &kp C_VOL_DN          &kp C_VOL_UP          &kp C_NEXT   &none
-                &none  &trans  &trans  &trans  &tog MEDIA     &trans                                      &none       &kp F13     &kp F14               &kp C_SLEEP           &kp C_POWER  &none
-                                               &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &kp C_STOP  &kp C_PLAY  &kp K_MUTE
+                &none  &trans  &trans  &trans  &to BASE       &trans                                      &kp C_POWER  &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &none        &none
+                &none  &trans  &trans  &trans  &trans         &trans                                      &kp C_SLEEP  &kp C_PREV  &kp C_VOL_DN          &kp C_VOL_UP          &kp C_NEXT   &none
+                &none  &trans  &trans  &trans  &tog MEDIA     &trans                                      &none        &kp F13     &kp F14               &none                 &none        &none
+                                               &lt MEDIA ESC  &lt NAV SPACE  &lt MOUSE TAB    &kp C_STOP  &kp C_PLAY   &kp K_MUTE
             >;
         };
 
